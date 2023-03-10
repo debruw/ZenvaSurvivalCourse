@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ZenvaSurvival.Player
 {
-    public class PlayerNeeds : MonoBehaviour
+    public class PlayerNeeds : MonoBehaviour, IDamagable
     {
         public Need health, hunger, thirst, sleep;
 
@@ -102,5 +102,10 @@ namespace ZenvaSurvival.Player
         {
             return curValue / maxValue;
         }
+    }
+
+    public interface IDamagable
+    {
+        void TakePhysicalDamage(int damageAmount);
     }
 }
