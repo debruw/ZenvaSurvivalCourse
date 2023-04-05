@@ -62,10 +62,13 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Radius: 5
+    - _Scale: 0
     m_Colors:
     - _LineColor: {r: 1, g: 0, b: 0, a: 1}
     - _NoiseDirection: {r: 1, g: 1, b: 0, a: 0}
     - _Position: {r: 0, g: 0, b: 0, a: 0}
+    - _ShapeCutoff: {r: 0.1, g: 0.1, b: 0.1, a: 0}
+    - _ShapeSmoothness: {r: 0.1, g: 0.1, b: 0.1, a: 0}
     - _WorldPos: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &7190169084989467721
