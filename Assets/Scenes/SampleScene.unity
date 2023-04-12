@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 51709588}
   - component: {fileID: 51709587}
   m_Layer: 5
-  m_Name: BG
+  m_Name: InfoBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -167,7 +167,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -30, y: 0}
+  m_AnchoredPosition: {x: -20, y: 0}
   m_SizeDelta: {x: 380, y: 510}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &51709587
@@ -379,12 +379,12 @@ PrefabInstance:
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 185
+      value: 190
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -435
+      value: -450
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
@@ -479,10 +479,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Unequip
+  m_text: Un-Equip
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5ec432658ab1dd74f99935566fae970f, type: 2}
-  m_sharedMaterial: {fileID: -56515219463835241, guid: 5ec432658ab1dd74f99935566fae970f,
+  m_fontAsset: {fileID: 11400000, guid: b4266eaddf85a2d41ad3e64c577a62ea, type: 2}
+  m_sharedMaterial: {fileID: -56515219463835241, guid: b4266eaddf85a2d41ad3e64c577a62ea,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -608,7 +608,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 25, y: 0}
+  m_AnchoredPosition: {x: 20, y: 0}
   m_SizeDelta: {x: 510, y: 510}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &126900930
@@ -640,7 +640,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 120, y: 120}
-  m_Spacing: {x: 5, y: 5}
+  m_Spacing: {x: 10, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &164727488
@@ -726,7 +726,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 164727491}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1901021487}
+        m_TargetAssemblyTypeName: ZenvaSurvival.Player.Inventory, Assembly-CSharp
+        m_MethodName: OnDropButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &164727491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -747,7 +759,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -896,7 +908,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.13207549, g: 0.13207549, b: 0.13207549, a: 1}
+  m_Color: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1496,12 +1508,12 @@ PrefabInstance:
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 435
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -185
+      value: -190
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
@@ -1573,7 +1585,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 60}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &304959224
@@ -1852,8 +1864,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Equip
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5ec432658ab1dd74f99935566fae970f, type: 2}
-  m_sharedMaterial: {fileID: -56515219463835241, guid: 5ec432658ab1dd74f99935566fae970f,
+  m_fontAsset: {fileID: 11400000, guid: b4266eaddf85a2d41ad3e64c577a62ea, type: 2}
+  m_sharedMaterial: {fileID: -56515219463835241, guid: b4266eaddf85a2d41ad3e64c577a62ea,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2166,7 +2178,7 @@ PrefabInstance:
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -185
+      value: -190
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
@@ -2298,12 +2310,12 @@ PrefabInstance:
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 310
+      value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -310
+      value: -320
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
@@ -2702,12 +2714,12 @@ PrefabInstance:
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 435
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -435
+      value: -450
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
@@ -2810,8 +2822,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Drop
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5ec432658ab1dd74f99935566fae970f, type: 2}
-  m_sharedMaterial: {fileID: -56515219463835241, guid: 5ec432658ab1dd74f99935566fae970f,
+  m_fontAsset: {fileID: 11400000, guid: b4266eaddf85a2d41ad3e64c577a62ea, type: 2}
+  m_sharedMaterial: {fileID: -56515219463835241, guid: b4266eaddf85a2d41ad3e64c577a62ea,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2946,8 +2958,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Use
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5ec432658ab1dd74f99935566fae970f, type: 2}
-  m_sharedMaterial: {fileID: -56515219463835241, guid: 5ec432658ab1dd74f99935566fae970f,
+  m_fontAsset: {fileID: 11400000, guid: b4266eaddf85a2d41ad3e64c577a62ea, type: 2}
+  m_sharedMaterial: {fileID: -56515219463835241, guid: b4266eaddf85a2d41ad3e64c577a62ea,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3271,7 +3283,7 @@ PrefabInstance:
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 310
+      value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
@@ -4097,12 +4109,12 @@ PrefabInstance:
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 310
+      value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -435
+      value: -450
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
@@ -4317,7 +4329,7 @@ PrefabInstance:
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -435
+      value: -450
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
@@ -4449,12 +4461,12 @@ PrefabInstance:
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 185
+      value: 190
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -185
+      value: -190
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
@@ -4591,7 +4603,7 @@ PrefabInstance:
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -310
+      value: -320
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
@@ -5151,7 +5163,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5350,7 +5362,7 @@ PrefabInstance:
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 185
+      value: 190
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
@@ -5487,12 +5499,12 @@ PrefabInstance:
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 435
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -310
+      value: -320
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
@@ -5633,7 +5645,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5675,7 +5687,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584784965}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.35, z: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5885,12 +5897,12 @@ PrefabInstance:
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 185
+      value: 190
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -310
+      value: -320
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
@@ -6098,12 +6110,12 @@ PrefabInstance:
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 310
+      value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -185
+      value: -190
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
@@ -6402,7 +6414,7 @@ PrefabInstance:
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 435
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 7980569146689455500, guid: 9d3059e4e1d40a348bc097a2596ca5f2,
         type: 3}
@@ -6455,11 +6467,11 @@ GameObject:
   - component: {fileID: 1901021480}
   - component: {fileID: 1901021483}
   - component: {fileID: 1901021485}
-  - component: {fileID: 1901021481}
-  - component: {fileID: 1901021482}
-  - component: {fileID: 1901021484}
   - component: {fileID: 1901021486}
   - component: {fileID: 1901021487}
+  - component: {fileID: 1901021484}
+  - component: {fileID: 1901021481}
+  - component: {fileID: 1901021482}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -6536,6 +6548,7 @@ MonoBehaviour:
   minXLook: -85
   maxXLook: 85
   lookSensitivity: 0.2
+  canLook: 1
 --- !u!114 &1901021484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6603,7 +6616,19 @@ MonoBehaviour:
     m_ActionId: 493ddd6d-47d6-4490-abad-d5143d628134
     m_ActionName: Main/Jump[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1901021487}
+        m_TargetAssemblyTypeName: ZenvaSurvival.Player.Inventory, Assembly-CSharp
+        m_MethodName: OnInventoryButton
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 0e426f6c-e9e9-4357-a5d2-3b6406752c2b
     m_ActionName: Main/Inventory[/Keyboard/tab]
   - m_PersistentCalls:
@@ -7127,10 +7152,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34.5
-  m_fontSizeBase: 36
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 0
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -7260,7 +7285,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2135053554}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1901021487}
+        m_TargetAssemblyTypeName: ZenvaSurvival.Player.Inventory, Assembly-CSharp
+        m_MethodName: OnUseButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2135053554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7281,7 +7318,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1

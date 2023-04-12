@@ -19,6 +19,9 @@ namespace ZenvaSurvival.Player
 
         private Vector2 mouseDelta;
 
+        [HideInInspector]
+        public bool canLook = true;
+
         //components
         private Rigidbody _rigidbody;
 
@@ -39,7 +42,8 @@ namespace ZenvaSurvival.Player
 
         private void LateUpdate()
         {
-            CameraLook();
+            if (canLook)
+                CameraLook();
         }
 
         void Move()
@@ -116,6 +120,12 @@ namespace ZenvaSurvival.Player
             Gizmos.DrawRay(transform.position + (-transform.forward * .2f), Vector3.down);
             Gizmos.DrawRay(transform.position + (transform.right * .2f), Vector3.down);
             Gizmos.DrawRay(transform.position + (-transform.right * .2f), Vector3.down);
+        }
+
+        public void ToggleCursor(bool toggle)
+        {
+            Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
+            canLook = !toggle;
         }
     }
 }

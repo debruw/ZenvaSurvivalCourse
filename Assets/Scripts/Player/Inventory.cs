@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
-using UnityEngine.InputSystem;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using ZenvaSurvival.Items;
 using ZenvaSurvival.Ui;
 
@@ -32,19 +29,23 @@ namespace ZenvaSurvival.Player
         public GameObject dropButton;
         
         private int curEquipIndex;
+        
         // components
         private PlayerController controller;
         private PlayerNeeds needs;
+        
         [Header("Events")]
         public UnityEvent onOpenInventory;
         public UnityEvent onCloseInventory;
 
         // singleton
         public static Inventory instance;
+        
         void Awake ()
         {
             instance = this;
             controller = GetComponent<PlayerController>();
+            needs = GetComponent<PlayerNeeds>();
         }
 
         private void Start()
@@ -61,10 +62,12 @@ namespace ZenvaSurvival.Player
             ClearSelectedItemWindow();
         }
 
-        // called when the inventory opens or the currently selected item has depleted
-        void ClearSelectedItemWindow()
+        public void OnInventoryButton(InputAction.CallbackContext context)
         {
-            
+            if (context.phase == InputActionPhase.Started)
+            {
+                Toggle();
+            }
         }
         
         // opens or closes the inventory
@@ -73,19 +76,24 @@ namespace ZenvaSurvival.Player
             if(inventoryWindow.activeInHierarchy)
             {
                 inventoryWindow.SetActive(false);
+                onCloseInventory.Invoke();
+                controller.ToggleCursor(false);
             }
             else
             {
                 inventoryWindow.SetActive(true);
+                onOpenInventory.Invoke();
+                ClearSelectedItemWindow();
+                controller.ToggleCursor(true);
             }
         }
-        
+
         // is the inventory currently open?
         public bool IsOpen ()
         {
             return inventoryWindow.activeInHierarchy;
         }
-        
+
         // adds the requested item to the player's inventory
         public void AddItem (ItemData item)
         {
@@ -100,6 +108,7 @@ namespace ZenvaSurvival.Player
                     return;
                 }
             }
+            
             ItemSlot emptySlot = GetEmptySlot();
             // do we have an empty slot for the item?
             if(emptySlot != null)
@@ -154,15 +163,80 @@ namespace ZenvaSurvival.Player
             }
             return null;
         }
-        
+
         // called when we click on an item slot
         public void SelectItem (int index)
         {
+            if (slots[index].item == null)
+                return;
+
+            selectedItem = slots[index];
+            selectedItemIndex = index;
+
+            selectedItemName.text = selectedItem.item.displayName;
+            selectedItemDescription.text = selectedItem.item.description;
+            
+            //set stat values and stat names
+            selectedItemStatNames.text = string.Empty;
+            selectedItemStatValues.text = string.Empty;
+
+            for (int x = 0; x < selectedItem.item.consumables.Length; x++)
+            {
+                selectedItemStatNames.text += selectedItem.item.consumables[x].type.ToString() + "\n";
+                selectedItemStatValues.text += selectedItem.item.consumables[x].value.ToString() + "\n";
+            }
+            
+            useButton.SetActive(selectedItem.item.type == ItemType.Consumable);
+            equipButton.SetActive(selectedItem.item.type == ItemType.Equipable && !uiSlots[index].equipped);
+            unEquipButton.SetActive(selectedItem.item.type == ItemType.Consumable && uiSlots[index].equipped);
+            dropButton.SetActive(true);
+        }
+        
+        // called when the inventory opens or the currently selected item has depleted
+        void ClearSelectedItemWindow()
+        {
+            // clear th text elements
+            selectedItem = null;
+            selectedItemName.text = String.Empty;
+            selectedItemDescription.text = String.Empty;
+            selectedItemStatNames.text = String.Empty;
+            selectedItemStatValues.text = String.Empty;
+            
+            //disable buttons
+            useButton.SetActive(false);
+            equipButton.SetActive(false);
+            unEquipButton.SetActive(false);
+            dropButton.SetActive(false);
         }
         
         // called when the "Use" button is pressed
         public void OnUseButton ()
         {
+            if (selectedItem.item.type == ItemType.Consumable)
+            {
+                for (int x = 0; x < selectedItem.item.consumables.Length; x++)
+                {
+                    switch (selectedItem.item.consumables[x].type)
+                    {
+                        case ConsumableType.Hunger:
+                            needs.Eat(selectedItem.item.consumables[x].value);
+                            break;
+                        case ConsumableType.Thirst:
+                            needs.Drink(selectedItem.item.consumables[x].value);
+                            break;
+                        case ConsumableType.Health:
+                            needs.Heal(selectedItem.item.consumables[x].value);
+                            break;
+                        case ConsumableType.Sleep:
+                            needs.Sleep(selectedItem.item.consumables[x].value);
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+                }
+            }
+            
+            RemoveSelectedItem();
         }
         
         // called when the "Equip" button is pressed
@@ -190,7 +264,17 @@ namespace ZenvaSurvival.Player
         // removes the currently selected item
         void RemoveSelectedItem ()
         {
-
+            selectedItem.quantity--;
+            if (selectedItem.quantity == 0)
+            {
+                if (uiSlots[selectedItemIndex].equipped)
+                    UnEquip(selectedItemIndex);
+                
+                selectedItem.item = null;
+                ClearSelectedItemWindow();
+            }
+            
+            UpdateUI();
         }
         
         public void RemoveItem (ItemData item)
