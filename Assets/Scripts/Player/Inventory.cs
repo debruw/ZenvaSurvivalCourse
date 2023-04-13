@@ -12,12 +12,11 @@ namespace ZenvaSurvival.Player
     {
         public ItemSlotUI[] uiSlots;
         public ItemSlot[] slots;
-        
+
         public GameObject inventoryWindow;
         public Transform dropPosition;
-        
-        [Header("Selected Item")]
-        private ItemSlot selectedItem;
+
+        [Header("Selected Item")] private ItemSlot selectedItem;
         private int selectedItemIndex;
         public TextMeshProUGUI selectedItemName;
         public TextMeshProUGUI selectedItemDescription;
@@ -27,21 +26,20 @@ namespace ZenvaSurvival.Player
         public GameObject equipButton;
         public GameObject unEquipButton;
         public GameObject dropButton;
-        
+
         private int curEquipIndex;
-        
+
         // components
         private PlayerController controller;
         private PlayerNeeds needs;
-        
-        [Header("Events")]
-        public UnityEvent onOpenInventory;
+
+        [Header("Events")] public UnityEvent onOpenInventory;
         public UnityEvent onCloseInventory;
 
         // singleton
         public static Inventory instance;
-        
-        void Awake ()
+
+        void Awake()
         {
             instance = this;
             controller = GetComponent<PlayerController>();
@@ -53,12 +51,13 @@ namespace ZenvaSurvival.Player
             inventoryWindow.SetActive(false);
             slots = new ItemSlot[uiSlots.Length];
             // initialize the slots
-            for(int x = 0; x < slots.Length; x++)
+            for (int x = 0; x < slots.Length; x++)
             {
                 slots[x] = new ItemSlot();
                 uiSlots[x].index = x;
                 uiSlots[x].Clear();
             }
+
             ClearSelectedItemWindow();
         }
 
@@ -69,11 +68,11 @@ namespace ZenvaSurvival.Player
                 Toggle();
             }
         }
-        
+
         // opens or closes the inventory
-        public void Toggle ()
+        public void Toggle()
         {
-            if(inventoryWindow.activeInHierarchy)
+            if (inventoryWindow.activeInHierarchy)
             {
                 inventoryWindow.SetActive(false);
                 onCloseInventory.Invoke();
@@ -89,83 +88,87 @@ namespace ZenvaSurvival.Player
         }
 
         // is the inventory currently open?
-        public bool IsOpen ()
+        public bool IsOpen()
         {
             return inventoryWindow.activeInHierarchy;
         }
 
         // adds the requested item to the player's inventory
-        public void AddItem (ItemData item)
+        public void AddItem(ItemData item)
         {
             // does this item have a stack it can be added to?
-            if(item.canStack)
+            if (item.canStack)
             {
                 ItemSlot slotToStackTo = GetItemStack(item);
-                if(slotToStackTo != null)
+                if (slotToStackTo != null)
                 {
                     slotToStackTo.quantity++;
                     UpdateUI();
                     return;
                 }
             }
-            
+
             ItemSlot emptySlot = GetEmptySlot();
             // do we have an empty slot for the item?
-            if(emptySlot != null)
+            if (emptySlot != null)
             {
                 emptySlot.item = item;
                 emptySlot.quantity = 1;
                 UpdateUI();
                 return;
             }
+
             // if the item can't stack and there are no empty slots - throw it away
             ThrowItem(item);
         }
-        
+
         // spawns the item infront of the player
-        void ThrowItem (ItemData item)
+        void ThrowItem(ItemData item)
         {
-            Instantiate(item.dropPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * UnityEngine.Random.value * 360.0f));
+            Instantiate(item.dropPrefab, dropPosition.position,
+                Quaternion.Euler(Vector3.one * UnityEngine.Random.value * 360.0f));
         }
-        
+
         // updates the UI slots
-        void UpdateUI ()
+        void UpdateUI()
         {
-            for(int x = 0; x < slots.Length; x++)
+            for (int x = 0; x < slots.Length; x++)
             {
-                if(slots[x].item != null)
+                if (slots[x].item != null)
                     uiSlots[x].Set(slots[x]);
                 else
                     uiSlots[x].Clear();
             }
         }
-        
+
         // returns the item slot that the requested item can be stacked on
         // returns null if there is no stack available
-        ItemSlot GetItemStack (ItemData item)
+        ItemSlot GetItemStack(ItemData item)
         {
-            for(int x = 0; x < slots.Length; x++)
+            for (int x = 0; x < slots.Length; x++)
             {
-                if(slots[x].item == item && slots[x].quantity < item.maxStackAmount)
+                if (slots[x].item == item && slots[x].quantity < item.maxStackAmount)
                     return slots[x];
             }
+
             return null;
         }
-        
+
         // returns an empty slot in the inventory
         // if there are no empty slots - return null
-        ItemSlot GetEmptySlot ()
+        ItemSlot GetEmptySlot()
         {
-            for(int x = 0; x < slots.Length; x++)
+            for (int x = 0; x < slots.Length; x++)
             {
-                if(slots[x].item == null)
+                if (slots[x].item == null)
                     return slots[x];
             }
+
             return null;
         }
 
         // called when we click on an item slot
-        public void SelectItem (int index)
+        public void SelectItem(int index)
         {
             if (slots[index].item == null)
                 return;
@@ -175,7 +178,7 @@ namespace ZenvaSurvival.Player
 
             selectedItemName.text = selectedItem.item.displayName;
             selectedItemDescription.text = selectedItem.item.description;
-            
+
             //set stat values and stat names
             selectedItemStatNames.text = string.Empty;
             selectedItemStatValues.text = string.Empty;
@@ -185,13 +188,13 @@ namespace ZenvaSurvival.Player
                 selectedItemStatNames.text += selectedItem.item.consumables[x].type.ToString() + "\n";
                 selectedItemStatValues.text += selectedItem.item.consumables[x].value.ToString() + "\n";
             }
-            
+
             useButton.SetActive(selectedItem.item.type == ItemType.Consumable);
             equipButton.SetActive(selectedItem.item.type == ItemType.Equipable && !uiSlots[index].equipped);
             unEquipButton.SetActive(selectedItem.item.type == ItemType.Consumable && uiSlots[index].equipped);
             dropButton.SetActive(true);
         }
-        
+
         // called when the inventory opens or the currently selected item has depleted
         void ClearSelectedItemWindow()
         {
@@ -201,16 +204,16 @@ namespace ZenvaSurvival.Player
             selectedItemDescription.text = String.Empty;
             selectedItemStatNames.text = String.Empty;
             selectedItemStatValues.text = String.Empty;
-            
+
             //disable buttons
             useButton.SetActive(false);
             equipButton.SetActive(false);
             unEquipButton.SetActive(false);
             dropButton.SetActive(false);
         }
-        
+
         // called when the "Use" button is pressed
-        public void OnUseButton ()
+        public void OnUseButton()
         {
             if (selectedItem.item.type == ItemType.Consumable)
             {
@@ -235,59 +238,74 @@ namespace ZenvaSurvival.Player
                     }
                 }
             }
-            
+
             RemoveSelectedItem();
         }
-        
+
         // called when the "Equip" button is pressed
-        public void OnEquipButton ()
+        public void OnEquipButton()
         {
+            if (uiSlots[curEquipIndex].equipped)
+                UnEquip(curEquipIndex);
+
+            uiSlots[selectedItemIndex].equipped = true;
+            curEquipIndex = selectedItemIndex;
+            EquipManager.instance.EquipNew(selectedItem.item);
+            UpdateUI();
+
+            SelectItem(selectedItemIndex);
         }
-        
+
         // unequips the requested item
-        void UnEquip (int index)
+        void UnEquip(int index)
         {
+            uiSlots[index].equipped = false;
+            EquipManager.instance.UnEquip();
+            UpdateUI();
+
+            if (selectedItemIndex == index)
+                SelectItem(index);
         }
-        
+
         // called when the "UnEquip" button is pressed
-        public void OnUnEquipButton ()
+        public void OnUnEquipButton()
         {
         }
-        
+
         // called when the "Drop" button is pressed
-        public void OnDropButton ()
+        public void OnDropButton()
         {
             ThrowItem(selectedItem.item);
             RemoveSelectedItem();
         }
 
         // removes the currently selected item
-        void RemoveSelectedItem ()
+        void RemoveSelectedItem()
         {
             selectedItem.quantity--;
             if (selectedItem.quantity == 0)
             {
                 if (uiSlots[selectedItemIndex].equipped)
                     UnEquip(selectedItemIndex);
-                
+
                 selectedItem.item = null;
                 ClearSelectedItemWindow();
             }
-            
+
             UpdateUI();
         }
-        
-        public void RemoveItem (ItemData item)
+
+        public void RemoveItem(ItemData item)
         {
         }
-        
+
         // does the player have "quantity" amount of "item"s?
-        public bool HasItems (ItemData item, int quantity)
+        public bool HasItems(ItemData item, int quantity)
         {
             return false;
         }
     }
-    
+
     // stores information about an item slot in the inventory
     public class ItemSlot
     {

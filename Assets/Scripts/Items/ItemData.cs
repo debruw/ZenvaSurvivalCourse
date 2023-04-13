@@ -33,6 +33,9 @@ namespace ZenvaSurvival.Items
 
         [Header("Consumable")] 
         public ItemDataConsumable[] consumables;
+
+        [Header("Equipable")] 
+        public GameObject equipPrefab;
     }
 
     [System.Serializable]
