@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12028fac730d405384263d536e4cf436, type: 3}
+  m_Name: Axe
+  m_EditorClassIdentifier: 
+  itemToCraft: {fileID: 11400000, guid: d147a8775c120ec4eb9b9a9be46bc4b8, type: 2}
+  cost:
+  - item: {fileID: 11400000, guid: 7f540fd1063650349910848cec957f91, type: 2}
+    quantity: 1
+  - item: {fileID: 11400000, guid: 04210f11cb4094140919432efe525422, type: 2}
+    quantity: 1
